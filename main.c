@@ -1,23 +1,30 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-int main(int argc, char *argv[])
+struct Book{
+       int number;
+       char title[10];
+};
+
+int main(void)
 {
-    char *pc =NULL;
-    int i =0;
+    struct Book *p;
+    p=(struct Book*)malloc(2*sizeof(struct Book));
     
-    pc=(char*)malloc(100*sizeof(char));
-    if(pc==NULL){
-                 printf("메모리할당오류\ㅜ");
-                 exit(1);
-                 }
-    for (i=0;i<26;i++){
-        pc[i]='a'+i;
-        }
-    pc[i]=0;
-    printf("%s\n",pc);
-    free(pc);
-  
+    if(p==NULL){
+               printf("메모리할당오류\n");
+               return;
+               }
+    p->number=1;
+    strcpy(p->title,"C Proramming");
+
+    (p+1)->number=2;
+    strcpy((p+1)->title, "Electronics");
+    
+    free(p);
+    return;
+      
+
   system("PAUSE");	
   return 0;
 }
